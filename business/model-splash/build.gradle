@@ -1,0 +1,16 @@
+apply from: "../../app-model-build.gradle"
+
+android {
+    defaultConfig {
+        if (rootProject.ext.isRunModel) {
+            applicationId "com.model.splash"
+        }
+    }
+    //统一资源前缀，规范资源引用
+    resourcePrefix "splash_"
+}
+
+dependencies {
+    //公共基础包
+    implementation project(":library:lib-common")
+}

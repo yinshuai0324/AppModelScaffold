@@ -1,0 +1,20 @@
+//app全局的依赖库管理
+ext {
+    /** 官方提供的插件和依赖包括Jetpack组件的相关依赖 **/
+    //Kotlin 编译脚本
+    lib_kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    //Android 框架的通用库提供扩展程序
+    lib_core_ktx = "androidx.core:core-ktx:1.3.1"
+    //AndroidX 应用兼容库
+    lib_appcompat = "androidx.appcompat:appcompat:1.2.0"
+    //谷歌提供的UI 视觉统一 组件库
+    lib_material = "com.google.android.material:material:1.2.1"
+    //约束布局
+    lib_constraintlayout = "androidx.constraintlayout:constraintlayout:2.0.4"
+
+    /** 第三方框架依赖库 **/
+    //ARouter路由
+    lib_arouter_api = "com.alibaba:arouter-api:1.5.2"
+    //ARouter路由compiler
+    lib_arouter_compiler = "com.alibaba:arouter-compiler:1.5.2"
+}

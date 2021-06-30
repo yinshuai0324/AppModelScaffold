@@ -1,0 +1,30 @@
+//app全局配置
+ext {
+    // 编译的SDK版本
+    compileSdkVersion = 28
+    // buildTools版本
+    buildToolsVersion = "28.0.3"
+    // 最小的SDK版本
+    minSdkVersion = 21
+    // 目标SDK版本
+    targetSdkVersion = 28
+    // 软件版本代号
+    versionCode = 1
+    // 软件版本名称
+    versionName = "1.0.1"
+    //appId
+    applicationId = "com.app.base1"
+}
+
+//app全局参数配置
+ext {
+    //是否以Model模式运行
+    isRunModel = false
+    //测试环境Api地址
+    testHttpApi = "https://test.api.com/"
+    //预发环境Api地址
+    betaHttpApi = "https://beta.api.com/"
+    //正式环境Api地址
+    prodHttpApi = "https://prod.api.com/"
+}
+

@@ -1,0 +1,10 @@
+rootProject.name = "BaseAppliction"
+//宿主App
+include ':app'
+//基础依赖库
+include ':library:lib-base'
+//公告依赖库
+include ':library:lib-common'
+//业务模块-开屏页
+include ':business:model-splash'
+include ':business:model-home'
