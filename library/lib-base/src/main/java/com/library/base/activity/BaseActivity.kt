@@ -4,8 +4,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
+import com.library.base.data.EventType
 import com.library.base.expand.bindView
 import com.library.base.expand.getVmClazz
+import com.library.base.expand.toast
 import com.library.base.utils.inflateBindingWithGeneric
 import com.library.base.viewmodel.BaseViewModel
 import com.library.widget.status.MultiStateContainer
@@ -51,6 +53,7 @@ abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCompatAct
             pageStatus.changePageStatus(PageStatus.STATUS_LOADING)
         }
         viewModel = createViewModel()
+        handlerViewModelNotice()
         createdObserve()
         initData()
     }
@@ -91,5 +94,41 @@ abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCompatAct
      */
     private fun createViewModel(): VM {
         return ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(getVmClazz(this))
+    }
+
+    /**
+     * 处理ViewModel的通知
+     */
+    private fun handlerViewModelNotice() {
+        viewModel.eventNoticeData.observe(this) {
+            it?.let {
+                when (it.type) {
+                    EventType.EVENT_TOAST -> {
+                        //显示Toast
+                        toast(it.desc)
+                    }
+                    EventType.EVENT_DIALOG -> {
+                        //TODO 显示弹窗
+                    }
+                    EventType.EVENT_SHOW_LOADING_DIALOG -> {
+                        //TODO 显示加载框
+                    }
+                    EventType.EVENT_DISMISS_LOADING_DIALOG -> {
+                        //TODO 关闭加载框
+                    }
+                    EventType.EVENT_CHANGE_PAGE_STATUS -> {
+                        //改变页面状态
+                        changePageStatus(it.pageStatus)
+                    }
+                    EventType.EVENT_FINISH_PAGE -> {
+                        //关闭当前页面
+                        finish()
+                    }
+                    else -> {
+                        //无需处理
+                    }
+                }
+            }
+        }
     }
 }

@@ -10,7 +10,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
+import com.library.base.data.EventType
 import com.library.base.expand.getVmClazz
+import com.library.base.expand.toast
 import com.library.base.utils.inflateBindingWithGeneric
 import com.library.base.viewmodel.BaseViewModel
 import com.library.widget.status.MultiStateContainer
@@ -61,6 +63,7 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
             pageStatus.changePageStatus(PageStatus.STATUS_LOADING)
         }
         viewModel = createViewModel()
+        handlerViewModelNotice()
         createdObserve()
         return pageStatus
     }
@@ -148,6 +151,41 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
      */
     private fun createViewModel(): VM {
         return ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(getVmClazz(this))
+    }
+
+
+    /**
+     * 处理ViewModel的通知
+     */
+    private fun handlerViewModelNotice() {
+        viewModel.eventNoticeData.observe(this) {
+            it?.let {
+                when (it.type) {
+                    EventType.EVENT_TOAST -> {
+                        //显示Toast
+                        if (isAdded) {
+                            requireContext().toast(it.desc)
+                        }
+                    }
+                    EventType.EVENT_DIALOG -> {
+                        //TODO 显示弹窗
+                    }
+                    EventType.EVENT_SHOW_LOADING_DIALOG -> {
+                        //TODO 显示加载框
+                    }
+                    EventType.EVENT_DISMISS_LOADING_DIALOG -> {
+                        //TODO 关闭加载框
+                    }
+                    EventType.EVENT_CHANGE_PAGE_STATUS -> {
+                        //改变页面状态
+                        changePageStatus(it.pageStatus)
+                    }
+                    else -> {
+                        //无需处理
+                    }
+                }
+            }
+        }
     }
 
 
