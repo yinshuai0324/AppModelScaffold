@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/library" />
             <option value="$PROJECT_DIR$/library/lib-base" />
             <option value="$PROJECT_DIR$/library/lib-common" />
+            <option value="$PROJECT_DIR$/library/lib-widget" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

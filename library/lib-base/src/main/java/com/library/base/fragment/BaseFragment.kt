@@ -5,12 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.library.base.expand.getVmClazz
 import com.library.base.utils.inflateBindingWithGeneric
 import com.library.base.viewmodel.BaseViewModel
+import com.library.widget.status.MultiStateContainer
+import com.library.widget.status.MultiStatePage
+import com.library.widget.status.PageStatus
 
 /**
  * 创建者：yinshuai
@@ -36,15 +41,28 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
     lateinit var viewBinding: VB
 
 
+    /**
+     * 页面状态显示View
+     */
+    lateinit var pageStatus: MultiStateContainer
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         viewBinding = inflateBindingWithGeneric(layoutInflater, container, false)
+        pageStatus = MultiStatePage.bindMultiState(viewBinding.root) {
+            //重试处理
+            onRetry()
+        }
+        if (defaultLoadingStatus()) {
+            pageStatus.changePageStatus(PageStatus.STATUS_LOADING)
+        }
         viewModel = createViewModel()
         createdObserve()
-        return viewBinding.root
+        return pageStatus
     }
 
 
@@ -98,6 +116,32 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
     open fun onInvisible() {
 
     }
+
+    /**
+     * 页面重试回调
+     */
+    open fun onRetry() {
+
+    }
+
+    /**
+     * 默认是否是加载状态
+     */
+    open fun defaultLoadingStatus(): Boolean {
+        return false
+    }
+
+    /**
+     * 改变页面状态
+     */
+    fun changePageStatus(status: PageStatus) {
+        pageStatus.changePageStatus(status)
+    }
+
+    /**
+     * 获取协程作用范围
+     */
+    fun getLifecycleScope() = viewLifecycleOwner.lifecycleScope
 
     /**
      * 创建viewModel

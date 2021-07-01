@@ -8,3 +8,4 @@ include ':library:lib-common'
 //业务模块-开屏页
 include ':business:model-splash'
 include ':business:model-home'
+include ':library:lib-widget'

@@ -8,13 +8,20 @@ import com.library.base.expand.bindView
 import com.library.base.expand.getVmClazz
 import com.library.base.utils.inflateBindingWithGeneric
 import com.library.base.viewmodel.BaseViewModel
+import com.library.widget.status.MultiStateContainer
+import com.library.widget.status.MultiStatePage
+import com.library.widget.status.PageStatus
+import com.library.widget.status.bindMultiState
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.MainScope
 
 /**
  * 创建者：yinshuai
  * 创建时间：2021/7/1 08:51
  * 作用描述：
  */
-abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCompatActivity() {
+abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCompatActivity(),
+    CoroutineScope by MainScope() {
 
     /**
      * ViewModel
@@ -26,11 +33,23 @@ abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCompatAct
      */
     lateinit var viewBinding: VB
 
+    /**
+     * 页面状态显示View
+     */
+    lateinit var pageStatus: MultiStateContainer
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = inflateBindingWithGeneric(layoutInflater)
         setContentView(viewBinding.root)
+        pageStatus = bindMultiState {
+            //重试
+            onRetry()
+        }
+        if (defaultLoadingStatus()) {
+            pageStatus.changePageStatus(PageStatus.STATUS_LOADING)
+        }
         viewModel = createViewModel()
         createdObserve()
         initData()
@@ -45,6 +64,27 @@ abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCompatAct
      * 创建订阅
      */
     abstract fun createdObserve()
+
+    /**
+     * 页面重试回调
+     */
+    open fun onRetry() {
+
+    }
+
+    /**
+     * 默认是否是加载状态
+     */
+    open fun defaultLoadingStatus(): Boolean {
+        return false
+    }
+
+    /**
+     * 改变页面状态
+     */
+    fun changePageStatus(status: PageStatus) {
+        pageStatus.changePageStatus(status)
+    }
 
     /**
      * 创建viewModel

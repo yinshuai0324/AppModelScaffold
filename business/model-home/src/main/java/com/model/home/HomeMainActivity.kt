@@ -2,6 +2,7 @@ package com.model.home
 
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.library.base.activity.BaseActivity
+import com.library.widget.status.PageStatus
 import com.model.home.adapter.HomeViewPagerAdapter
 import com.model.home.databinding.HomeActivityMainBinding
 
@@ -22,6 +23,10 @@ class HomeMainActivity : BaseActivity<HomeMainActivityViewModel, HomeActivityMai
         viewModel.pageData.observe(this) {
             adapter.data = it
             adapter.notifyDataSetChanged()
+            changePageStatus(PageStatus.STATUS_SUCCEED)
         }
     }
+
+    override fun defaultLoadingStatus() = true
+
 }

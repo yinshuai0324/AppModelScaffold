@@ -1,16 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/content"
+
+    <Button
+        android:id="@+id/emptyBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="空状态" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/emptyRetryBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="空状态-带重试" />
+
+    <Button
+        android:id="@+id/loadingBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="加载中状态" />
+
+    <Button
+        android:id="@+id/errorBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="错误状态" />
+
+    <Button
+        android:id="@+id/errorRetryBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="错误状态-带重试" />
+
+    <Button
+        android:id="@+id/netErrorBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="网络错误状态" />
+
+    <Button
+        android:id="@+id/netErrorRetryBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="网络错误状态-带重试" />
+
+</LinearLayout>

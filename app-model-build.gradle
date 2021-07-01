@@ -78,6 +78,12 @@ kapt {
 }
 
 dependencies {
+    //Jetpack
+    implementation rootProject.ext.lib_coroutines_android
+    implementation rootProject.ext.lib_lifecycle_runtime_ktx
+    implementation rootProject.ext.lib_lifecycle_livedata_ktx
+    implementation rootProject.ext.lib_lifecycle_viewmodel_ktx
+
     //公共基础包
     implementation project(":library:lib-common")
     //ARouter

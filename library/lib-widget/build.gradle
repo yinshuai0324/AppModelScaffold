@@ -1,5 +1,8 @@
-apply plugin: "com.android.library"
-apply plugin: 'kotlin-android'
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -32,10 +35,6 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-
-    viewBinding {
-        enabled = true
-    }
 }
 
 dependencies {
@@ -43,13 +42,4 @@ dependencies {
     implementation rootProject.ext.lib_core_ktx
     implementation rootProject.ext.lib_appcompat
     implementation rootProject.ext.lib_material
-
-    //Jetpack
-    implementation rootProject.ext.lib_coroutines_android
-    implementation rootProject.ext.lib_lifecycle_runtime_ktx
-    implementation rootProject.ext.lib_lifecycle_livedata_ktx
-    implementation rootProject.ext.lib_lifecycle_viewmodel_ktx
-
-    //UI 组件库
-    api project(":library:lib-widget")
 }
