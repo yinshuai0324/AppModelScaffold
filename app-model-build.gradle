@@ -63,6 +63,11 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+
+    viewBinding {
+        enabled = true
+    }
 }
 
 //ARouter 配置

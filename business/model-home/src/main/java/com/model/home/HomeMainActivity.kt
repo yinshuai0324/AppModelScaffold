@@ -1,13 +1,27 @@
 package com.model.home
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.library.base.activity.BaseActivity
+import com.model.home.adapter.HomeViewPagerAdapter
+import com.model.home.databinding.HomeActivityMainBinding
 
 @Route(path = "/model/HomeMainActivity")
-class HomeMainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home_main)
+class HomeMainActivity : BaseActivity<HomeMainActivityViewModel, HomeActivityMainBinding>() {
+
+    private lateinit var adapter: HomeViewPagerAdapter
+
+    override fun initData() {
+        adapter = HomeViewPagerAdapter(this)
+        viewBinding.viewPager.adapter = adapter
+
+        //获取网络数据
+        viewModel.getPageData()
+    }
+
+    override fun createdObserve() {
+        viewModel.pageData.observe(this) {
+            adapter.data = it
+            adapter.notifyDataSetChanged()
+        }
     }
 }

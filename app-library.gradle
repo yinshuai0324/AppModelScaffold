@@ -17,4 +17,6 @@ ext {
     lib_arouter_api = "com.alibaba:arouter-api:1.5.2"
     //ARouter路由compiler
     lib_arouter_compiler = "com.alibaba:arouter-compiler:1.5.2"
+    //Fragment管理框架
+    lib_s_fragment = "com.github.weikaiyun.SFragmentation:fragmentation:1.8.3"
 }
