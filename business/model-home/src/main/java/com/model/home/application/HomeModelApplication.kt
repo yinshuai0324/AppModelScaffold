@@ -6,6 +6,8 @@ import android.content.res.Configuration
 import android.util.Log
 import com.alibaba.android.arouter.launcher.ARouter
 import com.library.base.application.BaseModelApplication
+import com.library.network.NetworkManage
+import com.model.home.BuildConfig
 
 /**
  * 创建者：yinshuai
@@ -15,25 +17,26 @@ import com.library.base.application.BaseModelApplication
 class HomeModelApplication : BaseModelApplication() {
 
     override fun attachBaseContext(context: Context) {
-        Log.i("===>>>", "HomeModelApplication -> attachBaseContext")
     }
 
     override fun onCreate(application: Application) {
-        Log.i("===>>>", "HomeModelApplication -> onCreate")
-        ARouter.openLog()
-        ARouter.openDebug()
+        if (BuildConfig.DEBUG) {
+            ARouter.openLog()
+            ARouter.openDebug()
+        }
         ARouter.init(application)
+        if (BuildConfig.IS_RUN_MODEL) {
+            //已模块化运行的话 需要初始化网络请求框架
+            NetworkManage.config().build()
+        }
     }
 
     override fun onLowMemory() {
-        Log.i("===>>>", "HomeModelApplication -> onLowMemory")
     }
 
     override fun onTerminate() {
-        Log.i("===>>>", "HomeModelApplication -> onTerminate")
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
-        Log.i("===>>>", "HomeModelApplication -> onConfigurationChanged")
     }
 }

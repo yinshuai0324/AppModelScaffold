@@ -29,14 +29,17 @@ android {
         prod {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'boolean', 'IS_RUN_MODEL', "${rootProject.ext.isRunModel}"
         }
         beta {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'boolean', 'IS_RUN_MODEL', "${rootProject.ext.isRunModel}"
         }
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'boolean', 'IS_RUN_MODEL', "${rootProject.ext.isRunModel}"
         }
     }
 
@@ -86,6 +89,8 @@ dependencies {
 
     //公共基础包
     implementation project(":library:lib-common")
+    //网络请求
+    implementation project(":library:lib-network")
     //ARouter
     implementation(rootProject.ext.lib_arouter_api) {
         //过滤掉v4包里面的东西 防止和AndroidX冲突

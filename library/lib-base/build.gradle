@@ -50,6 +50,8 @@ dependencies {
     implementation rootProject.ext.lib_lifecycle_livedata_ktx
     implementation rootProject.ext.lib_lifecycle_viewmodel_ktx
 
+    //网络库
+    implementation project(":library:lib-network")
     //UI 组件库
     api project(":library:lib-widget")
 }

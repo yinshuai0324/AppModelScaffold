@@ -3,6 +3,7 @@ package com.model.home
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.library.base.viewmodel.BaseViewModel
+import com.model.home.api.HomeApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -14,6 +15,7 @@ import kotlinx.coroutines.launch
  */
 class HomeMainActivityViewModel : BaseViewModel() {
     val pageData = MutableLiveData<ArrayList<String>>()
+    val apiService = getApiService(HomeApiService::class.java)
 
     fun getPageData() {
         viewModelScope.launch(Dispatchers.IO) {

@@ -25,6 +25,12 @@ ext {
     lib_arouter_api = "com.alibaba:arouter-api:1.5.2"
     //ARouter路由compiler
     lib_arouter_compiler = "com.alibaba:arouter-compiler:1.5.2"
-    //Fragment管理框架
-    lib_s_fragment = "com.github.weikaiyun.SFragmentation:fragmentation:1.8.3"
+    //retrofit2网络请求
+    lib_retrofit2 = "com.squareup.retrofit2:retrofit:2.9.0"
+    //moshi网络数据序列化
+    lib_moshi = "com.squareup.moshi:moshi:1.12.0"
+    //moshi代码生成器
+    lib_moshi_kotlin_codegen = "com.squareup.moshi:moshi-kotlin-codegen:1.12.0"
+    //Moshi Json转换器
+    lib_moshi_converter = "com.squareup.retrofit2:converter-moshi:2.9.0"
 }

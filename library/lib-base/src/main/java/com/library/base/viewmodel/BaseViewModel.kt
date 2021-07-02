@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.library.base.data.EventType
 import com.library.base.data.ViewModelEventData
 import com.library.base.livedata.SingleLiveEvent
+import com.library.network.NetworkManage
 import com.library.widget.status.PageStatus
 
 /**
@@ -16,6 +17,21 @@ open class BaseViewModel : ViewModel() {
      * 事件通知
      */
     val eventNoticeData = SingleLiveEvent<ViewModelEventData>()
+
+
+    /**
+     * 获取Api服务
+     */
+    fun <T> getApiService(key: String = NetworkManage.GLOBAL_API_KEY, clazz: Class<T>): T {
+        return NetworkManage.createApiService(key, clazz)
+    }
+
+    /**
+     * 获取Api服务
+     */
+    fun <T> getApiService(clazz: Class<T>): T {
+        return NetworkManage.createApiService(NetworkManage.GLOBAL_API_KEY, clazz)
+    }
 
 
     /**
@@ -63,4 +79,6 @@ open class BaseViewModel : ViewModel() {
         eventNoticeData.value =
             ViewModelEventData(EventType.EVENT_CHANGE_PAGE_STATUS, pageStatus = status)
     }
+
+
 }
