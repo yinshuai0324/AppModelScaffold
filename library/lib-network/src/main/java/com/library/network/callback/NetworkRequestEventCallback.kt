@@ -6,5 +6,10 @@ package com.library.network.callback
  * 作用描述：网络请求过程中 事件状态回调
  */
 interface NetworkRequestEventCallback {
+    /**
+     * 隐藏Loading框
+     */
     fun dismissLoading()
+
+
 }

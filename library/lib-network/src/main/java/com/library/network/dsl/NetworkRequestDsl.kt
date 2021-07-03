@@ -11,7 +11,7 @@ class NetworkRequestDsl<T> {
 
     internal var onLoading: (() -> Unit)? = null
         private set
-    internal var onQueryDict: (suspend (T) -> Unit)? = null
+    internal var onBeforeHandler: (suspend (T) -> Unit)? = null
         private set
     internal var onSuccess: (suspend (T) -> Unit)? = null
         private set
@@ -52,8 +52,8 @@ class NetworkRequestDsl<T> {
         this.onHideLoading = block
     }
 
-    fun onQueryDict(block: suspend (T) -> Unit) {
-        this.onQueryDict = block
+    fun onBeforeHandler(block: suspend (T) -> Unit) {
+        this.onBeforeHandler = block
     }
 
     fun onSuccess(block: suspend (T) -> Unit) {

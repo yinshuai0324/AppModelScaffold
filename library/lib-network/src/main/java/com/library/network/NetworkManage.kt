@@ -25,7 +25,7 @@ object NetworkManage {
     /**
      * okHttp客户端
      */
-    private  lateinit var okHttpClient: OkHttpClient
+    private lateinit var okHttpClient: OkHttpClient
 
     /**
      * retrofit实例
@@ -36,6 +36,16 @@ object NetworkManage {
      * 全局的Host key
      */
     const val GLOBAL_API_KEY = "GlobalApiKey"
+
+    /**
+     * 请求过程中网络异常的提升文案
+     */
+    const val NETWORK_ERROR_TIPS = "网络不稳定，请检查网络"
+
+    /**
+     * 请求过程中网络连接异常的提升文案
+     */
+    const val NETWORK_CONNECT_ERROR_TIPS = "网络连接异常，请检查网络"
 
 
     /**
