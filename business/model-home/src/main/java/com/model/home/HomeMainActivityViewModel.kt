@@ -34,5 +34,6 @@ class HomeMainActivityViewModel : BaseViewModel() {
 
             }
         }
+
     }
 }

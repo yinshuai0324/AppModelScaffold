@@ -115,7 +115,7 @@ open class BaseViewModel : ViewModel() {
      */
     fun <T> safeApiRequest(dsl: NetworkRequestDsl<T>.() -> Unit) {
         viewModelScope.launch(Dispatchers.Main) {
-            ApiRequest.safeApiRequest<T>(this@BaseViewModel, object : NetworkRequestEventCallback {
+            ApiRequest.safeApiRequest(this@BaseViewModel, object : NetworkRequestEventCallback {
                 override fun dismissLoading() {
                     dismissLoading()
                 }
