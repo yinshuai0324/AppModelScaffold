@@ -2,7 +2,9 @@ package com.library.network.dsl
 
 import com.library.network.data.NetworkData
 
-
+/**
+ * 网络请求的DSL
+ */
 class NetworkRequestDsl<T> {
 
     var api: (suspend () -> NetworkData<T>)? = null

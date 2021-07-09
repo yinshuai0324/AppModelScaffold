@@ -104,7 +104,12 @@ object NetworkManage {
      */
     fun <T> createApiService(key: String = GLOBAL_API_KEY, clazz: Class<T>): T {
         if (retrofitInstance.containsKey(key)) {
-            return retrofitInstance[key]!!.create(clazz)
+            val instance = retrofitInstance[key]
+            if (instance != null) {
+                return instance.create(clazz)
+            } else {
+                throw NullPointerException("The instance does not exist")
+            }
         } else {
             throw NullPointerException("The incoming Host does not exist")
         }

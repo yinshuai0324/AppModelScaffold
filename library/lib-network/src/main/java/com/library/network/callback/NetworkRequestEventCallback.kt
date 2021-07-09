@@ -11,5 +11,4 @@ interface NetworkRequestEventCallback {
      */
     fun dismissLoading()
 
-
 }

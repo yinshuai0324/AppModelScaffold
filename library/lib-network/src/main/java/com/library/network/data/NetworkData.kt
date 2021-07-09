@@ -2,7 +2,9 @@ package com.library.network.data
 
 import com.library.network.code.HttpCode
 
-
+/**
+ * 网络数据包装实体类
+ */
 class NetworkData<T> {
     var code: Int = 0
 

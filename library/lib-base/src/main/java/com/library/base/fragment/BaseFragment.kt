@@ -22,7 +22,7 @@ import com.library.widget.status.PageStatus
 /**
  * 创建者：yinshuai
  * 创建时间：2021/7/1 09:02
- * 作用描述：Fragment 基类
+ * 作用描述：Fragment 基类  MVVM架构 使用ViewBind查找控件
  * Androidx 下的Fragment 新增了setMaxLifecycle 所以一般情况下以及使用ViewPager2 能够正确的回调 onResume
  * 对于使用add+show+hide的方式 请使用ActivityExpand.kt 里面的loadFragmentsTransaction 和 showHideFragmentTransaction
  */
@@ -71,7 +71,6 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initData()
     }
 

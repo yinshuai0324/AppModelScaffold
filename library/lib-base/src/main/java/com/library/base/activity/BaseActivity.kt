@@ -20,7 +20,7 @@ import kotlinx.coroutines.MainScope
 /**
  * 创建者：yinshuai
  * 创建时间：2021/7/1 08:51
- * 作用描述：
+ * 作用描述：Activity的基类 MVVM架构 使用ViewBind查找控件 带协程作用域
  */
 abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCompatActivity(),
     CoroutineScope by MainScope() {
