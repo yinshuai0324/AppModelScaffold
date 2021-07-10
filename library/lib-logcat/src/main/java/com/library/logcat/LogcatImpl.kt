@@ -9,6 +9,19 @@ import android.util.Log
  */
 class LogcatImpl : LogcatService {
 
+
+    fun log(level: LogcatLevel, tag: String? = AppLog.logTag, msg: String?) {
+        when (level) {
+            LogcatLevel.INFO -> logI(tag = tag, msg = msg)
+            LogcatLevel.DEBUG -> logD(tag = tag, msg = msg)
+            LogcatLevel.ERROR -> logE(tag = tag, msg = msg)
+            LogcatLevel.JSON -> logJson(tag = tag, msg = msg)
+            LogcatLevel.OBJECT -> logObj(tag = tag, msg = msg)
+            LogcatLevel.VERBOSE -> logV(tag = tag, msg = msg)
+            LogcatLevel.DATA -> logData(tag = tag, msg = msg)
+        }
+    }
+
     override fun logI(tag: String?, msg: String?) {
         if (AppLog.isOpenLogcat) {
             Log.i(tag, msg)
@@ -18,6 +31,12 @@ class LogcatImpl : LogcatService {
     override fun logD(tag: String?, msg: String?) {
         if (AppLog.isOpenLogcat) {
             Log.d(tag, msg)
+        }
+    }
+
+    override fun logE(tag: String?, msg: String?) {
+        if (AppLog.isOpenLogcat) {
+            Log.e(tag, msg)
         }
     }
 

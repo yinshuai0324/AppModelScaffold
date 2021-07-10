@@ -17,6 +17,11 @@ interface LogcatService {
     fun logD(tag: String? = AppLog.logTag, msg: String?)
 
     /**
+     * 打印错误日志
+     */
+    fun logE(tag: String? = AppLog.logTag, msg: String?)
+
+    /**
      * 打印Verbose日志
      */
     fun logV(tag: String? = AppLog.logTag, msg: String?)

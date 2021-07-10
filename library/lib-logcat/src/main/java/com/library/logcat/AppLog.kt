@@ -20,7 +20,7 @@ object AppLog {
     /**
      * 日志实现类
      */
-    var logcatImpl = LogcatImpl()
+    private var logcatImpl = LogcatImpl()
 
 
     /**
@@ -35,18 +35,14 @@ object AppLog {
      * log打印 带等级
      */
     fun log(level: LogcatLevel, msg: String?) {
-        when (level) {
-
-        }
+        logcatImpl.log(level = level, msg = msg)
     }
 
     /**
-     * log打印 带等级
+     * log打印 带等级 带tag
      */
     fun log(level: LogcatLevel, tag: String?, msg: String?) {
-        when (level) {
-
-        }
+        logcatImpl.log(level = level, tag = tag, msg = msg)
     }
 
 }
