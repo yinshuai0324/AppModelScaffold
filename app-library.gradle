@@ -33,4 +33,6 @@ ext {
     lib_moshi_kotlin_codegen = "com.squareup.moshi:moshi-kotlin-codegen:1.12.0"
     //Moshi Json转换器
     lib_moshi_converter = "com.squareup.retrofit2:converter-moshi:2.9.0"
+    //动画库
+    lib_airbnb_lottie = "com.airbnb.android:lottie:3.7.1"
 }
