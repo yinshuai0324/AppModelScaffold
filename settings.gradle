@@ -1,4 +1,4 @@
-rootProject.name = "BaseAppliction"
+rootProject.name = "AppModelScaffold"
 //宿主App
 include ':app'
 //基础依赖库

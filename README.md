@@ -1,5 +1,9 @@
 ![](https://img.shields.io/badge/license-MIT-red) ![](https://img.shields.io/badge/version-v0.1.1-orange) ![](https://img.shields.io/badge/language-kotlin-brightgreen)
 
+#### 项目简介
+    提供一套以组件化开发的脚手架，能够快速进入开发
+
+
 #### 项目背景
 
     基于Jetpack组件，并且使用Kotlin语言进行开发  
