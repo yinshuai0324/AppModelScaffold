@@ -35,4 +35,15 @@ ext {
     lib_moshi_converter = "com.squareup.retrofit2:converter-moshi:2.9.0"
     //动画库
     lib_airbnb_lottie = "com.airbnb.android:lottie:3.7.1"
+    //权限申请-核心
+    lib_afollestad_core = "com.afollestad.assent:core:3.0.0-RC4"
+    //权限申请-协程支持
+    lib_afollestad_coroutines = "com.afollestad.assent:coroutines:3.0.0-RC4"
+    //状态栏管理
+    lib_ultimatebarx = "com.zackratos.ultimatebarx:ultimatebarx:0.6.0"
+    //图片加载
+    lib_coil = "io.coil-kt:coil:1.3.0"
+    //数据持久化
+    lib_mmkv = "com.tencent:mmkv-static:1.2.10"
+
 }
