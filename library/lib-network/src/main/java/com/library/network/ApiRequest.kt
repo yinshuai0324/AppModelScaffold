@@ -40,7 +40,7 @@ object ApiRequest {
         } catch (e: Exception) {
             NetworkData(500, "请求异常")
         } finally {
-            callback.dismissLoading()
+            callback.onDismissLoading()
         }
     }
 
@@ -85,7 +85,7 @@ object ApiRequest {
                     null
                 } finally {
                     viewModel.viewModelScope.launch(Dispatchers.Main) {
-                        callback.dismissLoading()
+                        callback.onDismissLoading()
                         retrofitCoroutine.onHideLoading?.invoke()
                     }
                 }

@@ -24,6 +24,7 @@ class SplashMainActivity : BaseActivity<BaseViewModel, SplashActivityMainBinding
 
     override fun onAnimationEnd(p0: Animator?) {
         ARouter.getInstance().build("/model/HomeMainActivity").navigation()
+        finish()
     }
 
     override fun onAnimationCancel(p0: Animator?) {

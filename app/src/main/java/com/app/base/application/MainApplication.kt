@@ -1,6 +1,7 @@
 package com.app.base.application
 
 import com.library.base.application.BaseApplication
+import com.library.network.NetworkManage
 
 /**
  * 创建者：yinshuai
@@ -10,6 +11,6 @@ import com.library.base.application.BaseApplication
 class MainApplication : BaseApplication() {
 
     override fun appInit() {
-
+        NetworkManage.config().build()
     }
 }

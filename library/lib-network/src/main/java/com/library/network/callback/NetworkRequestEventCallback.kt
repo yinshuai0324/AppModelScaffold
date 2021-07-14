@@ -9,6 +9,6 @@ interface NetworkRequestEventCallback {
     /**
      * 隐藏Loading框
      */
-    fun dismissLoading()
+    fun onDismissLoading()
 
 }

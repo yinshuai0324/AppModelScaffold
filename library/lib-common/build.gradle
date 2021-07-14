@@ -47,4 +47,6 @@ dependencies {
     api rootProject.ext.lib_airbnb_lottie
     //基础组件库
     api project(":library:lib-base")
+    //网络
+    api project(":library:lib-network")
 }

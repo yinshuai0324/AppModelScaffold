@@ -104,7 +104,7 @@ open class BaseViewModel : ViewModel() {
      */
     suspend fun <T> safeApiRequestAwait(api: suspend () -> NetworkData<T>): NetworkData<T> {
         return ApiRequest.safeApiRequestAwait(object : NetworkRequestEventCallback {
-            override fun dismissLoading() {
+            override fun onDismissLoading() {
                 dismissLoading()
             }
         }, api)
@@ -116,7 +116,7 @@ open class BaseViewModel : ViewModel() {
     fun <T> safeApiRequest(dsl: NetworkRequestDsl<T>.() -> Unit) {
         viewModelScope.launch(Dispatchers.Main) {
             ApiRequest.safeApiRequest(this@BaseViewModel, object : NetworkRequestEventCallback {
-                override fun dismissLoading() {
+                override fun onDismissLoading() {
                     dismissLoading()
                 }
             }, dsl)
