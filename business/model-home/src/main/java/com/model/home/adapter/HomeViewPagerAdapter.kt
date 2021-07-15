@@ -2,10 +2,11 @@ package com.model.home.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.model.home.pages.HomeChildFragment
+import com.model.home.pages.HomeFragment1
+import com.model.home.pages.HomeFragment2
+import com.model.home.pages.HomeFragment3
+import com.model.home.pages.HomeFragment4
 
 /**
  * 创建者：yinshuai
@@ -20,6 +21,12 @@ class HomeViewPagerAdapter constructor(activity: FragmentActivity) :
     }
 
     override fun createFragment(position: Int): Fragment {
-        return HomeChildFragment.newInstance(data[position])
+        return when (position) {
+            0 -> HomeFragment1.newInstance()
+            1 -> HomeFragment2.newInstance()
+            2 -> HomeFragment3.newInstance()
+            3 -> HomeFragment4.newInstance()
+            else -> HomeFragment1.newInstance()
+        }
     }
 }

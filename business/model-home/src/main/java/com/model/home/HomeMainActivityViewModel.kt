@@ -19,7 +19,6 @@ class HomeMainActivityViewModel : BaseViewModel() {
 
     fun getPageData() {
         viewModelScope.launch(Dispatchers.IO) {
-            delay(3000)
             viewModelScope.launch(Dispatchers.Main) {
                 pageData.value = arrayListOf("第一个页面", "第二个页面", "第三个页面", "第四个页面")
             }

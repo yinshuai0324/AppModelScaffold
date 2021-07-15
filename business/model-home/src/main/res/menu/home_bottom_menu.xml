@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu1"
+        android:icon="@drawable/ic_menu_one_un"
+        android:title="页面1" />
+
+    <item
+        android:id="@+id/menu2"
+        android:icon="@drawable/ic_menu_two_un"
+        android:title="页面2" />
+
+    <item
+        android:id="@+id/menu3"
+        android:icon="@drawable/ic_menu_three_un"
+        android:title="页面3" />
+
+    <item
+        android:id="@+id/menu4"
+        android:icon="@drawable/ic_menu_four_un"
+        android:title="页面4" />
+</menu>

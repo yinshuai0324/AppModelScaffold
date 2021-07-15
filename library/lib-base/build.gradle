@@ -54,4 +54,6 @@ dependencies {
     implementation project(":library:lib-network")
     //UI 组件库
     api project(":library:lib-widget")
+    //状态栏
+    api rootProject.ext.lib_ultimatebarx
 }

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.library.base.data.EventType
 import com.library.base.expand.bindView
+import com.library.base.expand.defaultActivityBar
 import com.library.base.expand.getVmClazz
 import com.library.base.expand.toast
 import com.library.base.utils.inflateBindingWithGeneric
@@ -45,6 +46,9 @@ abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCompatAct
         super.onCreate(savedInstanceState)
         viewBinding = inflateBindingWithGeneric(layoutInflater)
         setContentView(viewBinding.root)
+        if (autoHandlerBar()) {
+            defaultActivityBar()
+        }
         pageStatus = bindMultiState {
             //重试
             onRetry()
@@ -131,4 +135,9 @@ abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCompatAct
             }
         }
     }
+
+    /**
+     * 是否默认处理状态栏和底部导航栏
+     */
+    open fun autoHandlerBar(): Boolean = true
 }

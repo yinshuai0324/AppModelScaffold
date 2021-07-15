@@ -46,7 +46,7 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
     /**
      * 页面状态显示View
      */
-    lateinit var pageStatus: MultiStateContainer
+    private lateinit var pageStatus: MultiStateContainer
 
 
     override fun onCreateView(

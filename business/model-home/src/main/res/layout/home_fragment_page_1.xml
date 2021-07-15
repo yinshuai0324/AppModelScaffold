@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="页面状态测试"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/errorBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="错误状态"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <Button
+        android:id="@+id/errorRetryBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="错误状态-带重试按钮"
+        app:layout_constraintTop_toBottomOf="@+id/errorBtn" />
+
+    <Button
+        android:id="@+id/emptyBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="无数据状态"
+        app:layout_constraintTop_toBottomOf="@+id/errorRetryBtn" />
+
+    <Button
+        android:id="@+id/emptyRetryBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="无数据状态-带重试按钮"
+        app:layout_constraintTop_toBottomOf="@+id/emptyBtn" />
+
+
+    <Button
+        android:id="@+id/networkBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="网络错误状态"
+        app:layout_constraintTop_toBottomOf="@+id/emptyRetryBtn" />
+
+    <Button
+        android:id="@+id/networkRetryBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="网络错误状态-带重试按钮"
+        app:layout_constraintTop_toBottomOf="@+id/networkBtn" />
+
+
+    <Button
+        android:id="@+id/loadingBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="加载中状态"
+        app:layout_constraintTop_toBottomOf="@+id/networkBtn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
