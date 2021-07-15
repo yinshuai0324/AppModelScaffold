@@ -13,11 +13,11 @@
     
 ### 项目运行环境
 
- 桌面系统：MacOS、Windows、Linux...
- AndroidStudio版本：建议4.1.0+
- JDK版本：1.8.0
- Gradle版本：6.7.1
- 支持Android版本：api21+
+    桌面系统：MacOS、Windows、Linux...
+    AndroidStudio版本：建议4.1.0+
+    JDK版本：1.8.0
+    Gradle版本：6.7.1
+    支持Android版本：api21+
  
 
 ### 项目架构图
