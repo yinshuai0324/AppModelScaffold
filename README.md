@@ -18,7 +18,7 @@
 
 #### 项目结构图
 
-![](https://github.com/yinshuai0324/AppModelScaffold/blob/main/docs/projectStructure.png)
+![](https://github.com/yinshuai0324/AppModelScaffold/blob/main/docs/项目结构图.png)
     
 #### 项目功能
 
