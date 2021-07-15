@@ -10,6 +10,15 @@
     目的是为了快速进行开发，拉下代码基于本项目就能直接开发。  
     本项目使用了大量的Kotlin特性和语法，简化了大量的代码。
     并且封装了一些常用的的功能。能够开箱即用，快速开发
+
+#### 项目架构图
+    
+    正在补充中...
+    
+
+#### 项目结构图
+
+![](https://github.com/yinshuai0324/AppModelScaffold/blob/main/docs/projectStructure.png)
     
 #### 项目功能
 
