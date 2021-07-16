@@ -1,7 +1,9 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
+
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -37,18 +39,22 @@ android {
     }
 }
 
+//ARouter 配置
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
 dependencies {
-    api rootProject.ext.lib_kotlin_stdlib
-    api rootProject.ext.lib_core_ktx
-    api rootProject.ext.lib_appcompat
-    api rootProject.ext.lib_material
-    api rootProject.ext.lib_constraintlayout
-    //动画库
-    api rootProject.ext.lib_airbnb_lottie
-    //基础组件库
-    api project(":library:lib-base")
-    //网络
-    api project(":library:lib-network")
-    //路由
-    api project(":library:lib-router")
+    implementation rootProject.ext.lib_kotlin_stdlib
+    implementation rootProject.ext.lib_core_ktx
+    implementation rootProject.ext.lib_appcompat
+
+    //ARouter
+    implementation(rootProject.ext.lib_arouter_api) {
+        //过滤掉v4包里面的东西 防止和AndroidX冲突
+        exclude group: 'com.android.support', module: 'support-v4'
+    }
+    kapt rootProject.ext.lib_arouter_compiler
 }

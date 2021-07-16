@@ -5,11 +5,12 @@ import androidx.viewpager2.widget.ViewPager2
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.library.base.activity.BaseActivity
+import com.library.router.RouterPath
 import com.library.widget.status.PageStatus
 import com.model.home.adapter.HomeViewPagerAdapter
 import com.model.home.databinding.HomeActivityMainBinding
 
-@Route(path = "/model/HomeMainActivity")
+@Route(path = RouterPath.PAGE_HOME_MAIN_ACTIVITY)
 class HomeMainActivity : BaseActivity<HomeMainActivityViewModel, HomeActivityMainBinding>(),
     BottomNavigationView.OnNavigationItemSelectedListener {
 
