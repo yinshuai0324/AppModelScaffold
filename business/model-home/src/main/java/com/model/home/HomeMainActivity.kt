@@ -10,7 +10,7 @@ import com.library.widget.status.PageStatus
 import com.model.home.adapter.HomeViewPagerAdapter
 import com.model.home.databinding.HomeActivityMainBinding
 
-@Route(path = RouterPath.PAGE_HOME_MAIN_ACTIVITY, group = RouterPath.GROUP_HOME)
+@Route(path = RouterPath.PAGE_HOME_MAIN_ACTIVITY)
 class HomeMainActivity : BaseActivity<HomeMainActivityViewModel, HomeActivityMainBinding>(),
     BottomNavigationView.OnNavigationItemSelectedListener {
 
