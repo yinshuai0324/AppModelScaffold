@@ -22,9 +22,10 @@
 
 ### 项目架构图
     
-    正在补充中...
+![](https://github.com/yinshuai0324/AppModelScaffold/blob/main/docs/项目架构图.png)
     
-
+    项目架构图持续完善中...
+    
 ### 项目结构图
 
 ![](https://github.com/yinshuai0324/AppModelScaffold/blob/main/docs/项目结构图.png)
