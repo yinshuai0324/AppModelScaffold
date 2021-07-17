@@ -4,6 +4,7 @@ import android.animation.Animator
 import com.alibaba.android.arouter.launcher.ARouter
 import com.library.base.activity.BaseActivity
 import com.library.base.viewmodel.BaseViewModel
+import com.library.router.RouterPath
 import com.model.splash.databinding.SplashActivityMainBinding
 
 class SplashMainActivity : BaseActivity<BaseViewModel, SplashActivityMainBinding>(),
@@ -23,7 +24,7 @@ class SplashMainActivity : BaseActivity<BaseViewModel, SplashActivityMainBinding
     }
 
     override fun onAnimationEnd(p0: Animator?) {
-        ARouter.getInstance().build("/model/HomeMainActivity").navigation()
+        ARouter.getInstance().build(RouterPath.PAGE_HOME_MAIN_ACTIVITY).navigation()
         finish()
     }
 
