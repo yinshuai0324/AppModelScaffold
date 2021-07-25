@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.library.base.data.EventType
+import com.library.base.expand.ToastType
 import com.library.base.expand.getVmClazz
 import com.library.base.expand.toast
 import com.library.base.utils.inflateBindingWithGeneric
@@ -163,7 +164,7 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
                     EventType.EVENT_TOAST -> {
                         //显示Toast
                         if (isAdded) {
-                            requireContext().toast(it.desc)
+                            showToast(it.toastType, it.desc)
                         }
                     }
                     EventType.EVENT_DIALOG -> {
@@ -185,6 +186,13 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
                 }
             }
         }
+    }
+
+    /**
+     * 显示Toast
+     */
+    fun showToast(type: ToastType = ToastType.INFO, msg: String?) {
+        requireActivity().toast(type, msg)
     }
 
 

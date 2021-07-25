@@ -56,4 +56,6 @@ dependencies {
     api project(":library:lib-widget")
     //状态栏
     api rootProject.ext.lib_ultimatebarx
+    //toast
+    api rootProject.ext.lib_toast
 }

@@ -1,5 +1,6 @@
 package com.library.base.data
 
+import com.library.base.expand.ToastType
 import com.library.widget.status.PageStatus
 
 /**
@@ -11,7 +12,8 @@ data class ViewModelEventData(
     val type: EventType = EventType.EVENT_NONE,
     val pageStatus: PageStatus = PageStatus.STATUS_SUCCEED,
     val title: String = "",
-    val desc: String = ""
+    val desc: String = "",
+    val toastType: ToastType = ToastType.INFO
 )
 
 

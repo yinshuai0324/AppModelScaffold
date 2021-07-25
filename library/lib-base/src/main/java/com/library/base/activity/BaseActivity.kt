@@ -5,10 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.library.base.data.EventType
-import com.library.base.expand.bindView
-import com.library.base.expand.defaultActivityBar
-import com.library.base.expand.getVmClazz
-import com.library.base.expand.toast
+import com.library.base.expand.*
 import com.library.base.utils.inflateBindingWithGeneric
 import com.library.base.viewmodel.BaseViewModel
 import com.library.widget.status.MultiStateContainer
@@ -109,7 +106,7 @@ abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCompatAct
                 when (it.type) {
                     EventType.EVENT_TOAST -> {
                         //显示Toast
-                        toast(it.desc)
+                        toast(it.toastType, it.desc)
                     }
                     EventType.EVENT_DIALOG -> {
                         //TODO 显示弹窗
@@ -140,4 +137,12 @@ abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCompatAct
      * 是否默认处理状态栏和底部导航栏
      */
     open fun autoHandlerBar(): Boolean = true
+
+
+    /**
+     * 显示Toast
+     */
+    fun showToast(type: ToastType = ToastType.INFO, msg: String?) {
+        toast(type, msg)
+    }
 }

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.library.base.data.EventType
 import com.library.base.data.ViewModelEventData
+import com.library.base.expand.ToastType
 import com.library.base.livedata.SingleLiveEvent
 import com.library.network.ApiRequest
 import com.library.network.NetworkManage
@@ -45,9 +46,9 @@ open class BaseViewModel : ViewModel() {
     /**
      * 显示Toast
      */
-    fun toast(msg: String?) {
+    fun toast(toastType: ToastType = ToastType.INFO,msg: String?) {
         msg?.let {
-            eventNoticeData.value = ViewModelEventData(type = EventType.EVENT_TOAST, desc = it)
+            eventNoticeData.value = ViewModelEventData(type = EventType.EVENT_TOAST, desc = it ,toastType = toastType)
         }
     }
 
