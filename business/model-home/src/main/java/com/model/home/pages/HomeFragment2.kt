@@ -56,8 +56,8 @@ class HomeFragment2 : BaseFragment<BaseViewModel, HomeFragmentPage2Binding>(),
             R.id.infoBtn -> showToast(ToastType.INFO, "这是InfoToast")
             R.id.succeedBtn -> showToast(ToastType.SUCCESS, "这是SucceedToast")
             R.id.errorBtn -> showToast(ToastType.ERROR, "这是errorToast")
-            R.id.warningBtn -> showToast(ToastType.ERROR, "这是warningToast")
-            R.id.deleteBtn -> showToast(ToastType.ERROR, "这是deleteToast")
+            R.id.warningBtn -> showToast(ToastType.WARNING, "这是warningToast")
+            R.id.deleteBtn -> showToast(ToastType.WARNING, "这是deleteToast")
         }
     }
 }
