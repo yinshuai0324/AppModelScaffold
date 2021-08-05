@@ -20,6 +20,11 @@ class RouterPath {
          */
         const val GROUP_HOME = "home"
 
+        /**
+         * 组-登录页面
+         */
+        const val GROUP_LOGIN = "login"
+
 
         /***********页面***********/
 
@@ -28,7 +33,17 @@ class RouterPath {
          */
         const val PAGE_HOME_MAIN_ACTIVITY = "/model/HomeMainActivity"
 
+        /**
+         * 登录页面
+         */
+        const val PAGE_LOGIN_ACTIVITY = "/login/LoginActivity"
+
 
         /***********服务***********/
+
+        /**
+         * 登录模块对外提供的服务
+         */
+        const val SERVICE_LOGIN = "/service/LoginServiceImp"
     }
 }

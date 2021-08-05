@@ -50,7 +50,8 @@ dependencies {
     implementation rootProject.ext.lib_kotlin_stdlib
     implementation rootProject.ext.lib_core_ktx
     implementation rootProject.ext.lib_appcompat
-
+    //日志打印模块
+    implementation project(":library:lib-logcat")
     //ARouter
     implementation(rootProject.ext.lib_arouter_api) {
         //过滤掉v4包里面的东西 防止和AndroidX冲突

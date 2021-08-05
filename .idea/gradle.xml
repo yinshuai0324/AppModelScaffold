@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/business" />
             <option value="$PROJECT_DIR$/business/model-home" />
+            <option value="$PROJECT_DIR$/business/model-login" />
             <option value="$PROJECT_DIR$/business/model-splash" />
             <option value="$PROJECT_DIR$/library" />
             <option value="$PROJECT_DIR$/library/lib-base" />

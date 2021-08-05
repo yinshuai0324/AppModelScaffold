@@ -42,4 +42,5 @@ dependencies {
     implementation rootProject.ext.lib_core_ktx
     implementation rootProject.ext.lib_appcompat
     implementation rootProject.ext.lib_material
+    api rootProject.ext.lib_witget
 }

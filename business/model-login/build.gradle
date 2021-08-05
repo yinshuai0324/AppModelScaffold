@@ -1,0 +1,17 @@
+apply from: "../../app-model-build.gradle"
+apply plugin: 'kotlin-android'
+
+android {
+    defaultConfig {
+        if (rootProject.ext.isRunModel) {
+            applicationId "com.model.login"
+        }
+    }
+    //统一资源前缀，规范资源引用
+    resourcePrefix "login_"
+}
+
+dependencies {
+    //公共基础包
+    implementation project(":library:lib-common")
+}
