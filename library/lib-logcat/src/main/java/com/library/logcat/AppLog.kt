@@ -15,7 +15,7 @@ object AppLog {
     /**
      * 是否开启日志打印
      */
-    var isOpenLogcat = false
+    var isOpenLogcat = true
 
     /**
      * 日志实现类

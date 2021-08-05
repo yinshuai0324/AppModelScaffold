@@ -5,7 +5,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.library.base.activity.BaseActivity
 import com.library.base.viewmodel.BaseViewModel
 import com.library.router.RouterPath
-import com.library.router.service.LoginService
+import com.library.router.service.HomeService
 import com.model.login.databinding.LoginActivityLoginBinding
 import com.model.login.service.LoginServiceImp
 
@@ -15,7 +15,8 @@ import com.model.login.service.LoginServiceImp
 @Route(path = RouterPath.PAGE_LOGIN_ACTIVITY, group = RouterPath.GROUP_LOGIN)
 class LoginActivity : BaseActivity<BaseViewModel, LoginActivityLoginBinding>() {
 
-    var loginService = LoginServiceImp()
+    @Autowired(name = RouterPath.SERVICE_HOME)
+    lateinit var loginService: HomeService
 
     override fun initData() {
         viewBinding.loginBtn.setOnClickListener {

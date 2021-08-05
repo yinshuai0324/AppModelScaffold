@@ -44,6 +44,11 @@ class RouterPath {
         /**
          * 登录模块对外提供的服务
          */
-        const val SERVICE_LOGIN = "/service/LoginServiceImp"
+        const val SERVICE_LOGIN = "/login/LoginServiceImp"
+
+        /**
+         * 首页模块对外提供的服务
+         */
+        const val SERVICE_HOME = "/home/HomeServiceImp"
     }
 }

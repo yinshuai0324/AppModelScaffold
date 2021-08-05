@@ -1,6 +1,8 @@
 package com.model.login.service
 
 import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.library.logcat.AppLog
 import com.library.router.RouterPath
@@ -13,16 +15,12 @@ import com.library.router.service.LoginService
  */
 @Route(path = RouterPath.SERVICE_LOGIN, name = "登录模块服务")
 class LoginServiceImp : LoginService {
+    var loginStatusChange = MutableLiveData<String>()
 
-    private var userInfo: String = ""
-
-    override fun loginSucceed(userInfo: String) {
-        this.userInfo = userInfo
+    override fun loginStatusChange(): MutableLiveData<String> {
+        return loginStatusChange
     }
 
-    override fun getUserName(): String {
-        return userInfo
-    }
 
     override fun init(context: Context?) {
         AppLog.log("LoginServiceImp init")

@@ -2,11 +2,13 @@ package com.model.home.pages
 
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.launcher.ARouter
 import com.library.base.fragment.BaseFragment
 import com.library.base.viewmodel.BaseViewModel
+import com.library.logcat.AppLog
 import com.library.router.JumpActivity
 import com.library.router.RouterPath
 import com.library.router.service.LoginService
@@ -37,15 +39,6 @@ class HomeFragment4 : BaseFragment<BaseViewModel, HomeFragmentPage4Binding>() {
         }
     }
 
-    override fun onVisible() {
-        if (::loginService.isInitialized && isAdded) {
-            if (!TextUtils.isEmpty(loginService.getUserName())) {
-                viewBinding.userInfo.text = "当前用户:${loginService.getUserName()}"
-            } else {
-                viewBinding.userInfo.text = "当前用户:未登录"
-            }
-        }
-    }
 
     override fun createdObserve() {
 

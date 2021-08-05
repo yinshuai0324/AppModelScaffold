@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
+import com.alibaba.android.arouter.launcher.ARouter
 import com.library.base.data.EventType
 import com.library.base.expand.ToastType
 import com.library.base.expand.getVmClazz
@@ -65,6 +66,8 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
         }
         viewModel = createViewModel()
         handlerViewModelNotice()
+        //初始化路由
+        ARouter.getInstance().inject(this)
         createdObserve()
         return pageStatus
     }
