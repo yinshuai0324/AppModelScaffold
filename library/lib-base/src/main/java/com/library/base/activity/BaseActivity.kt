@@ -43,9 +43,8 @@ abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCompatAct
         super.onCreate(savedInstanceState)
         viewBinding = inflateBindingWithGeneric(layoutInflater)
         setContentView(viewBinding.root)
-        if (autoHandlerBar()) {
-            defaultActivityBar()
-        }
+        //设置状态栏样式
+        setBarStyle(statusBarStyle())
         pageStatus = bindMultiState {
             //重试
             onRetry()
@@ -136,7 +135,7 @@ abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCompatAct
     /**
      * 是否默认处理状态栏和底部导航栏
      */
-    open fun autoHandlerBar(): Boolean = true
+    open fun statusBarStyle(): StatusBarStyle = StatusBarStyle.DEFAULT
 
 
     /**
