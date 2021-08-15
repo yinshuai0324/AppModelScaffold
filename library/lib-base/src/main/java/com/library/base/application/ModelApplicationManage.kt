@@ -11,10 +11,12 @@ object ModelApplicationManage {
 
 
     init {
-        //开屏页
+        //开屏模块
         applications.add("com.model.splash.application.SplashModelApplication")
-        //首页
+        //首页模块
         applications.add("com.model.home.application.HomeModelApplication")
+        //登录模块
+        applications.add("com.model.login.application.LoginModelApplication")
     }
 
 }

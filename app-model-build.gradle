@@ -91,6 +91,8 @@ dependencies {
     implementation project(":library:lib-common")
     //网络请求
     implementation project(":library:lib-network")
+    //日志打印
+    implementation project(":library:lib-logcat")
     //ARouter
     implementation(rootProject.ext.lib_arouter_api) {
         //过滤掉v4包里面的东西 防止和AndroidX冲突

@@ -1,5 +1,6 @@
 apply plugin: "com.android.library"
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -38,6 +39,14 @@ android {
     }
 }
 
+
+//ARouter 配置
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
 dependencies {
     implementation rootProject.ext.lib_kotlin_stdlib
     implementation rootProject.ext.lib_core_ktx
@@ -58,4 +67,10 @@ dependencies {
     api rootProject.ext.lib_ultimatebarx
     //toast
     api rootProject.ext.lib_toast
+    //路由
+    implementation(rootProject.ext.lib_arouter_api) {
+        //过滤掉v4包里面的东西 防止和AndroidX冲突
+        exclude group: 'com.android.support', module: 'support-v4'
+    }
+    kapt rootProject.ext.lib_arouter_compiler
 }

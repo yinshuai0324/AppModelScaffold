@@ -20,7 +20,7 @@ class HomeFragment1 : BaseFragment<BaseViewModel, HomeFragmentPage1Binding>(),
     override fun lazyInit() {
         //模拟页面第一次加载
         lifecycleScope.launch(Dispatchers.IO) {
-            delay(2000)
+            delay(500)
             lifecycleScope.launch(Dispatchers.Main) {
                 changePageStatus(PageStatus.STATUS_SUCCEED)
             }

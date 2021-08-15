@@ -62,5 +62,6 @@ dependencies {
     if (!rootProject.ext.isRunModel) {
         implementation project(":business:model-splash")
         implementation project(":business:model-home")
+        implementation project(":business:model-login")
     }
 }

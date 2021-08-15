@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
+import com.alibaba.android.arouter.launcher.ARouter
 import com.library.base.data.EventType
 import com.library.base.expand.*
 import com.library.base.utils.inflateBindingWithGeneric
@@ -53,6 +54,8 @@ abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCompatAct
             pageStatus.changePageStatus(PageStatus.STATUS_LOADING)
         }
         viewModel = createViewModel()
+        //初始化路由
+        ARouter.getInstance().inject(this)
         handlerViewModelNotice()
         createdObserve()
         initData()
