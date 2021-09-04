@@ -59,6 +59,7 @@ object ApiRequest {
         //显示加载框
         retrofitCoroutine.onLoading?.invoke()
 
+        //使用异步流进行处理
         flow {
             retrofitCoroutine.api?.let {
                 //开始请求
