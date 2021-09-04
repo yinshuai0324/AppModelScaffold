@@ -9,6 +9,7 @@ import com.library.network.data.NetworkData
 import com.library.network.dsl.NetworkRequestDsl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.net.ConnectException
@@ -57,121 +58,56 @@ object ApiRequest {
         retrofitCoroutine.dsl()
         //显示加载框
         retrofitCoroutine.onLoading?.invoke()
-        retrofitCoroutine.api.let {
-            //开始请求
-            val work = viewModel.viewModelScope.async(Dispatchers.IO) {
-                try {
-                    it?.invoke()
-                } catch (e: UnknownHostException) {
-                    viewModel.viewModelScope.launch(Dispatchers.Main) {
-                        val errorMsg = NetworkManage.NETWORK_ERROR_TIPS
-                        retrofitCoroutine.onFailed?.invoke(errorMsg, 0)
-                    }
-                    Log.e("===>>>", e.toString())
-                    null
-                } catch (e: ConnectException) {
-                    viewModel.viewModelScope.launch(Dispatchers.Main) {
-                        val errorMsg = NetworkManage.NETWORK_CONNECT_ERROR_TIPS
-                        retrofitCoroutine.onFailed?.invoke(errorMsg, 0)
-                    }
-                    Log.e("===>>>", e.toString())
-                    null
-                } catch (e: Exception) {
-                    viewModel.viewModelScope.launch(Dispatchers.Main) {
-                        val errorMsg = NetworkManage.NETWORK_ERROR_TIPS
-                        retrofitCoroutine.onFailed?.invoke(errorMsg, 0)
-                    }
-                    Log.e("===>>>", e.toString())
-                    null
-                } finally {
-                    viewModel.viewModelScope.launch(Dispatchers.Main) {
-                        callback.onDismissLoading()
-                        retrofitCoroutine.onHideLoading?.invoke()
+
+        flow {
+            retrofitCoroutine.api?.let {
+                //开始请求
+                val result = it.invoke()
+                //请求完成 把数据发送到下游
+                emit(result)
+            }
+        }.flowOn(Dispatchers.IO).onCompletion {
+            //处理完成 发生异常也会回掉这里
+            callback.onDismissLoading()
+            retrofitCoroutine.onHideLoading?.invoke()
+        }.onEach {
+            //处理上游请求回来的数据 把逻辑放到onEach里面 并且放在catch的上面 是需要让catch同时捕获到上游和下游的异常
+            //设置基数数据
+            retrofitCoroutine.baseTime = it.timestamp
+            retrofitCoroutine.totalRecord = it.totalRecord
+            retrofitCoroutine.message = it.message
+            //请求完成的回掉
+            retrofitCoroutine.onComplete?.invoke()
+            if (it.code == 401) {
+                //登录失效
+            }
+            if (it.code == HttpCode.HTTP_CODE_200) {
+                if (it.data != null) {
+                    //字典查询
+                    if (retrofitCoroutine.onBeforeHandler != null) {
+                        val rawData = it.data
+                        retrofitCoroutine.onBeforeHandler?.invoke(rawData)
+                        retrofitCoroutine.onSuccess?.invoke(rawData)
+                    } else {
+                        //请求成功
+                        retrofitCoroutine.onSuccess?.invoke(it.data)
                     }
                 }
+                retrofitCoroutine.onSuccessEmptyData?.invoke(it.data)
+                retrofitCoroutine.onSuccessEmpty?.invoke()
+            } else {
+                retrofitCoroutine.onFailed?.invoke(it.message, it.code)
             }
-            //关闭时取消任务
-            work?.invokeOnCompletion {
-                if (work.isCancelled) {
-                    work.cancel()
-                    retrofitCoroutine.clean()
-                }
+        }.catch { e ->
+            //处理异常
+            val errorMsg = when (e) {
+                is UnknownHostException -> NetworkManage.NETWORK_ERROR_TIPS
+                is ConnectException -> NetworkManage.NETWORK_CONNECT_ERROR_TIPS
+                is HttpException -> NetworkManage.NETWORK_ERROR_TIPS
+                else -> NetworkManage.NETWORK_ERROR_TIPS
             }
-            try {
-                //获取数据
-                val response = work?.await()
-                if (response != null) {
-                    //设置基数数据
-                    retrofitCoroutine.baseTime = response.timestamp
-                    retrofitCoroutine.totalRecord = response.totalRecord
-                    retrofitCoroutine.message = response.message
+            retrofitCoroutine.onFailed?.invoke(errorMsg, 0)
+        }.launchIn(viewModel.viewModelScope)
 
-                    //请求完成的回掉
-                    retrofitCoroutine.onComplete?.invoke()
-                    response.let {
-                        if (response.code == 401) {
-                            //登录失效
-                        }
-//                        if (response.code == -1002 || response.code == 500 || response.code == 600) {
-//                            //服务异常
-//                            if (retrofitCoroutine.openLoadStatus) {
-//                                netWorkRequestFailure()
-//                            }
-//                            if (retrofitCoroutine.startNumber == 1) {
-//                                refreshFailure()
-//                            } else {
-//                                loadMoreFailure()
-//                            }
-//                        }
-
-//                        if (response.code == -4001) {
-//                            //签名不合法
-//                            if (retrofitCoroutine.openLoadStatus) {
-//                                netWorkRequestFailure()
-//                            }
-//                            if (retrofitCoroutine.startNumber == 1) {
-//                                refreshFailure()
-//                            } else {
-//                                loadMoreFailure()
-//                            }
-//                        }
-
-                        if (response.code == HttpCode.HTTP_CODE_200) {
-                            if (response.data != null) {
-                                //字典查询
-                                if (retrofitCoroutine.onBeforeHandler != null) {
-                                    val rawData = response.data
-                                    retrofitCoroutine.onBeforeHandler?.invoke(rawData)
-                                    retrofitCoroutine.onSuccess?.invoke(rawData)
-                                } else {
-                                    //请求成功
-                                    retrofitCoroutine.onSuccess?.invoke(response.data)
-                                }
-                            }
-                            retrofitCoroutine.onSuccessEmptyData?.invoke(response.data)
-                            retrofitCoroutine.onSuccessEmpty?.invoke()
-                        } else {
-                            retrofitCoroutine.onFailed?.invoke(
-                                response.message,
-                                response.code
-                            )
-                        }
-                    }
-                } else {
-                    //等于null 肯定是抛异常了 不用处理
-                }
-            } catch (e: HttpException) {
-                retrofitCoroutine.onFailed?.invoke(
-                    e.message,
-                    -1
-                )
-            } catch (e: Exception) {
-                retrofitCoroutine.onFailed?.invoke(
-                    e.message,
-                    -1
-                )
-            }
-
-        }
     }
 }
