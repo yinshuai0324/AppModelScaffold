@@ -84,7 +84,7 @@ object ApiRequest {
             //处理逻辑
             if (it.code == HttpCode.HTTP_CODE_200) {
                 if (it.data != null) {
-                    //字典查询
+                    //在数据返回到ViewModel之前预处理数据
                     if (retrofitCoroutine.onBeforeHandler != null) {
                         val rawData = it.data
                         retrofitCoroutine.onBeforeHandler?.invoke(rawData)
