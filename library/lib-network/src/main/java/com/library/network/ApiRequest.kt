@@ -79,9 +79,9 @@ object ApiRequest {
             retrofitCoroutine.message = it.message
             //请求完成的回掉
             retrofitCoroutine.onComplete?.invoke()
-            if (it.code == 401) {
-                //登录失效
-            }
+            //回掉code 给调用方自行处理
+            callback.onResponseCode(it.code)
+            //处理逻辑
             if (it.code == HttpCode.HTTP_CODE_200) {
                 if (it.data != null) {
                     //字典查询

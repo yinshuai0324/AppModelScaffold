@@ -108,6 +108,10 @@ open class BaseViewModel : ViewModel() {
             override fun onDismissLoading() {
                 dismissLoading()
             }
+
+            override fun onResponseCode(code: Int) {
+
+            }
         }, api)
     }
 
@@ -119,6 +123,10 @@ open class BaseViewModel : ViewModel() {
             ApiRequest.safeApiRequest(this@BaseViewModel, object : NetworkRequestEventCallback {
                 override fun onDismissLoading() {
                     dismissLoading()
+                }
+
+                override fun onResponseCode(code: Int) {
+                    TODO("Not yet implemented")
                 }
             }, dsl)
         }

@@ -11,4 +11,10 @@ interface NetworkRequestEventCallback {
      */
     fun onDismissLoading()
 
+    /**
+     * 服务器返回的code
+     * 自行处理相关操作
+     */
+    fun onResponseCode(code: Int)
+
 }
